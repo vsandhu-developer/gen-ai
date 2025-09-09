@@ -10,6 +10,11 @@ function askQuestion(rl, query) {
   return new Promise((resolve) => rl.question(query, resolve));
 }
 
+async function webSearch({ query }) {
+  const response = await tvly.search(query, { maxResults: 2 });
+  return response.results.map((r) => r.content).join("\n\n");
+}
+
 async function main() {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -87,11 +92,6 @@ async function main() {
   }
 
   rl.close();
-}
-
-async function webSearch({ query }) {
-  const response = await tvly.search(query, { maxResults: 2 });
-  return response.results.map((r) => r.content).join("\n\n");
 }
 
 main();
