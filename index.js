@@ -7,6 +7,7 @@ async function main() {
   const completion = await groq.chat.completions
     .create({
       temperature: 0,
+      top_p: 0.2,
       messages: [
         {
           role: "system",
